@@ -1,0 +1,42 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@{
+    var records = MockDB.TrackRecords.ToList().OrderByDescending(a => a.EndAccessDateTime).ToList();
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>This code is an brief example of what you can do by using the SignalR along with the Visibility API and Blur/Focus events of the browsers to track any user through your web-application.</p>
+    <p>More information about: <a href="https://www.codeproject.com/Articles/5271889/Microsoft-SignalR-Map-Controller-with-Page-Visibil">Microsoft SignalR Map Controller with Page Visibility API and Event Blur to Mapping the User Interaction in a Document Management System (DMS)</a> on CodeProject.</p>
+</div>
+ 
+<br />
+
+<div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>URL</th>
+                <th>Start Time</th>
+                <th>End Time</th>
+                <th>Total in seconds</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var item in records)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.RelativeUrl</td>
+                    <td>@item.BeginAccessDateTime</td>
+                    <td>@item.EndAccessDateTime</td>
+                    <td>@item.PassedSeconds</td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+</div>
